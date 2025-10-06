@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
 import type { Project } from '../types';
 
@@ -93,7 +93,8 @@ const Works: React.FC = () => {
             {PROJECTS.map((project) => {
                 const year = new Date(project.date).getFullYear();
                 return (
-                  <div 
+                  <Link 
+                    to={`/work/${project.id}`}
                     key={project.id} 
                     className="group bg-neutral-50 rounded-lg p-3 select-none"
                     onMouseEnter={() => setIsHovering(true)}
@@ -114,7 +115,7 @@ const Works: React.FC = () => {
                         <h3 className="text-2xl font-medium leading-[140%]">{project.title}</h3>
                         <p className="text-sm text-neutral-500 mt-1 text-right">{year}</p>
                     </div>
-                  </div>
+                  </Link>
                 )
             })}
           </div>

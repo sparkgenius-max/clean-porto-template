@@ -1,11 +1,12 @@
-
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { PROJECTS, NAV_LINKS } from '../constants';
 import type { Project } from '../types';
 
 interface WorkDetailProps {
-  project: Project;
-  allProjects: Project[];
-  onNavigateToProject: (project: Project) => void;
+  project?: Project;
+  allProjects?: Project[];
+  onNavigateToProject?: (project: Project) => void;
 }
 
 const DetailSection: React.FC<{title: string; children: React.ReactNode}> = ({ title, children }) => (
@@ -22,39 +23,75 @@ const DetailSection: React.FC<{title: string; children: React.ReactNode}> = ({ t
     </div>
 );
 
-
-const WorkDetail: React.FC<WorkDetailProps> = ({ project, allProjects, onNavigateToProject }) => {
-  if (!allProjects || allProjects.length === 0) {
+const WorkDetailPage: React.FC<WorkDetailProps> = ({ project, allProjects = PROJECTS }) => {
+  // If project is passed directly, use it; otherwise get from URL params
+  const { projectId } = useParams<{projectId: string}>();
+  const currentProject = project || allProjects.find(p => p.id === projectId);
+  
+  if (!currentProject) {
+    return (
+      <div className="pt-24 pb-12 bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Project Not Found</h2>
+          <Link to="/" className="text-blue-600 hover:underline">Back to Home</Link>
+        </div>
+      </div>
+    );
+  }
+  
+  const currentProjectIndex = allProjects.findIndex(p => p.id === currentProject.id);
+  if (currentProjectIndex === -1) {
     return null;
   }
-  const currentProjectIndex = allProjects.findIndex(p => p.id === project.id);
-  if (currentProjectIndex === -1) {
-    return null; // Project not found in the list, so don't render anything.
-  }
+  
   const nextProject = allProjects[(currentProjectIndex + 1) % allProjects.length];
 
   return (
     <div className="pt-24 pb-12 animate-fade-in bg-white">
+        {/* Header/Navigation */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/80 backdrop-blur-sm">
+          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+            <Link 
+              to="/" 
+              className="text-xl font-bold"
+            >
+              Velora
+            </Link>
+            <nav className="hidden md:flex items-center space-x-8">
+              {NAV_LINKS.map((link) => (
+                <a key={link} href={`/#${link.toLowerCase()}`} className="text-neutral-600 hover:text-black transition-colors">
+                  {link}
+                </a>
+              ))}
+            </nav>
+            <button className="md:hidden">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+            </button>
+          </div>
+        </header>
+
         {/* Project Header */}
         <header className="container mx-auto px-6 py-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
-                    <h1 className="text-7xl lg:text-8xl font-bold mb-6">{project.title}</h1>
-                    <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mb-4">{project.description}</p>
-                    <p className="text-neutral-500">{project.date}</p>
+                    <h1 className="text-7xl lg:text-8xl font-bold mb-6">{currentProject.title}</h1>
+                    <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mb-4">{currentProject.description}</p>
+                    <p className="text-neutral-500">{currentProject.date}</p>
                 </div>
                 <div className="md:col-span-1 md:text-left md:pl-8 pt-4 space-y-4 text-lg">
                     <div>
                         <p className="text-neutral-500 text-sm uppercase tracking-wider">Client</p>
-                        <p>{project.client}</p>
+                        <p>{currentProject.client}</p>
                     </div>
                     <div>
                         <p className="text-neutral-500 text-sm uppercase tracking-wider">Role</p>
-                        <p>{project.role}</p>
+                        <p>{currentProject.role}</p>
                     </div>
                     <div>
                         <p className="text-neutral-500 text-sm uppercase tracking-wider">Service</p>
-                        <p>{project.service}</p>
+                        <p>{currentProject.service}</p>
                     </div>
                 </div>
             </div>
@@ -62,17 +99,17 @@ const WorkDetail: React.FC<WorkDetailProps> = ({ project, allProjects, onNavigat
 
         {/* Main Image */}
         <div className="container mx-auto px-6 mb-24">
-            <img src={project.imageUrl} alt={project.title} className="w-full h-auto object-cover rounded-2xl"/>
+            <img src={currentProject.imageUrl} alt={currentProject.title} className="w-full h-auto object-cover rounded-2xl"/>
         </div>
 
         {/* Work Details */}
-        {project.workDetails.length > 0 && (
+        {currentProject.workDetails.length > 0 && (
             <DetailSection title="Work Details">
-                {project.workDetails.map((p, i) => <p key={i}>{p}</p>)}
-                {project.detailImages.length > 2 && (
+                {currentProject.workDetails.map((p, i) => <p key={i}>{p}</p>)}
+                {currentProject.detailImages.length > 2 && (
                     <img 
-                        src={project.detailImages[2]} 
-                        alt={`${project.title} detail`}
+                        src={currentProject.detailImages[2]} 
+                        alt={`${currentProject.title} detail`}
                         className="w-full h-auto object-cover rounded-2xl mt-12"
                     />
                 )}
@@ -80,13 +117,13 @@ const WorkDetail: React.FC<WorkDetailProps> = ({ project, allProjects, onNavigat
         )}
 
         {/* Design Solution */}
-        {project.designSolution && (
+        {currentProject.designSolution && (
             <DetailSection title="Design Solution">
-                <p>{project.designSolution}</p>
-                {project.detailImages.length > 1 && (
+                <p>{currentProject.designSolution}</p>
+                {currentProject.detailImages.length > 1 && (
                     <img 
-                        src={project.detailImages[1]} 
-                        alt={`${project.title} design solution`}
+                        src={currentProject.detailImages[1]} 
+                        alt={`${currentProject.title} design solution`}
                         className="w-full h-auto object-cover rounded-2xl mt-12"
                     />
                 )}
@@ -95,7 +132,8 @@ const WorkDetail: React.FC<WorkDetailProps> = ({ project, allProjects, onNavigat
         
         {/* Next Project */}
         <section className="container mx-auto px-6 mt-24">
-            <div 
+            <Link 
+                to={`/work/${nextProject.id}`}
                 className="group"
                 aria-label={`Next project: ${nextProject.title}`}
             >
@@ -111,11 +149,10 @@ const WorkDetail: React.FC<WorkDetailProps> = ({ project, allProjects, onNavigat
                         className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 </div>
-            </div>
+            </Link>
         </section>
-
     </div>
   );
 };
 
-export default WorkDetail;
+export default WorkDetailPage;

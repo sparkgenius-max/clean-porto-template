@@ -1,0 +1,23 @@
+@keyframes colorChange {
+  0% {
+    fill: #E3CAA6;
+  }
+  50% {
+    fill: #ffffff;
+  }
+  100% {
+    fill: #E3CAA6;
+  }
+}
+
+.animate-color-loop {
+  animation: colorChange 3s ease-in-out infinite;
+}
+
+/* Ensure full width for the heading */
+.stay-connected-heading {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
