@@ -25,13 +25,13 @@ const Footer: React.FC = () => {
             <ArrowRightIcon className="w-6 h-6 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
-        
+
         <hr className="border-neutral-800" />
-        
+
         {/* Middle Section */}
         <div className="flex flex-col md:flex-row justify-between gap-8 py-16">
           <div>
-            <h3 className="text-xl font-bold mb-4">Velora</h3>
+            <h3 className="text-xl font-bold mb-4">Nova</h3>
             <p className="text-neutral-400">123-456-7890</p>
             <p className="text-neutral-400">123 Sakura Street, New York City, NY, USA</p>
           </div>
@@ -46,10 +46,10 @@ const Footer: React.FC = () => {
         </div>
 
         <hr className="border-neutral-800" />
-        
+
         {/* Bottom Section */}
         <div className="pt-8">
-            <p className="text-neutral-500">Created by Lunis Design</p>
+          <p className="text-neutral-500">Created by Lunis Design</p>
         </div>
       </div>
     </footer>

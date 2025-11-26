@@ -36,8 +36,8 @@ export const PROJECTS: Project[] = [
     workDetails: ['Nexa required a full brand overhaul to better connect with a modern audience. We started with extensive market research to define a new brand strategy.', 'The project involved creating a new logo, a versatile color palette, and a comprehensive set of brand guidelines to ensure consistency across all marketing materials and products.'],
     designSolution: 'The new branding is clean, modern, and memorable. It has been successfully rolled out across all platforms, resulting in a 25% increase in audience engagement and a significant lift in brand recognition.',
     detailImages: [
-        'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=2127&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=2127&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop'
     ]
   },
   {
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     workDetails: ['Aether Homes needed a visually immersive website to showcase their high-end architectural projects. The primary goal was to create an elegant and intuitive user experience that reflects the quality of their work.'],
     designSolution: 'We designed a minimalist, image-forward website with a focus on large, high-resolution photography and clean typography. The site has been praised for its aesthetics and usability, and has led to a 40% increase in client inquiries.',
     detailImages: [
-        'https://images.unsplash.com/photo-1613553424131-f5b45281e2a0?q=80&w=1974&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1613553424131-f5b45281e2a0?q=80&w=1974&auto=format&fit=crop'
     ]
   },
   {
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
     workDetails: ['Horizon Travel aimed to create a mobile app that simplifies travel planning. The challenge was to design a feature-rich application that remained simple and delightful to use.'],
     designSolution: 'The final app features a clean, card-based UI, intuitive navigation, and personalized travel recommendations. It has achieved a 4.8-star rating on the App Store and has been featured as a "New App We Love".',
     detailImages: [
-        'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1974&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1974&auto=format&fit=crop'
     ]
   },
 ];
@@ -133,22 +133,22 @@ export const EXPERIENCES: Experience[] = [
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
-    {
-        quote: "Clean, professional, and easy to use. Velora gave my agency the polished online presence it needed. The attention to detail is remarkable.",
-        author: "Samantha Bee",
-        title: "Marketing Director, Innovate Co.",
-        avatarUrl: "https://picsum.photos/seed/avatar1/100/100"
-    },
-    {
-        quote: "A pleasure to work with. The creative process was collaborative and inspiring, resulting in a final product that exceeded all our expectations.",
-        author: "John Doe",
-        title: "Marketing Specialist, DreamLive",
-        avatarUrl: "https://picsum.photos/seed/avatar2/100/100"
-    },
-    {
-        quote: "The dedication to quality and user experience is evident in every pixel. I highly recommend their services to anyone looking for top-tier design.",
-        author: "Emily Chen",
-        title: "Founder, Tech startups",
-        avatarUrl: "https://picsum.photos/seed/avatar3/100/100"
-    }
+  {
+    quote: "Clean, professional, and easy to use. Nova gave my agency the polished online presence it needed. The attention to detail is remarkable.",
+    author: "Samantha Bee",
+    title: "Marketing Director, Innovate Co.",
+    avatarUrl: "https://picsum.photos/seed/avatar1/100/100"
+  },
+  {
+    quote: "A pleasure to work with. The creative process was collaborative and inspiring, resulting in a final product that exceeded all our expectations.",
+    author: "John Doe",
+    title: "Marketing Specialist, DreamLive",
+    avatarUrl: "https://picsum.photos/seed/avatar2/100/100"
+  },
+  {
+    quote: "The dedication to quality and user experience is evident in every pixel. I highly recommend their services to anyone looking for top-tier design.",
+    author: "Emily Chen",
+    title: "Founder, Tech startups",
+    avatarUrl: "https://picsum.photos/seed/avatar3/100/100"
+  }
 ];
